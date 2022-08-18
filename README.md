@@ -1,18 +1,20 @@
-# Sysmon_for_Linux
+# Manager Node Configurations ver 2.3.150 and earlier
 ## Add the below Elastic Ingest Parsers for Linux Sysmon to the Manager Node
 ```
+git clone https://github.com/bryant-treacle/Sysmon_for_linux
+cd Sysmon_for_linux
 sudo cp beats.common /opt/so/saltstack/local/salt/elasticsearch/files/ingest/
 sudo cp linux_sysmon /opt/so/saltstack/local/salt/elasticsearch/files/ingest/
 sudo so-elasticsearch-restart
 ```
-## Installing Sysmon on Linux
-### Dependencies
+# Installing Sysmon on Linux Server
+## Install Dependencies
 ```
 wget -q https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 
 ```
-### Build
+## Install Packages
 ```
 sudo apt-get update
 sudo apt-get install sysinternalsebpf
@@ -20,14 +22,15 @@ sudo apt-get install sysmonforlinux
 ```
 ### Install Sysmon with configuration file and verify.
 ```
+git clone https://github.com/bryant-treacle/Sysmon_for_linux
+cd Sysmon_for_linux
 sudo cp sysmon-4-linux-config.xml /bin
 sudo sysmon -i /bin/sysmon-4-linux-config.xml -accepteula
 sudo systemctl status sysmon
 ```
-# Install and Filebeat
+# Installing Filebeat on Linux Server
 ## Manager Node
-
-Run the `so-allow` command to allow beats endpoints to connect.
+Prior to installing Filebeat on the Linux server, run the `so-allow` command to allow beats endpoints to connect.
 
 ## Linux Host
 ### Download Filebeat from Security Onion SOC interface and install package.
@@ -53,8 +56,8 @@ sudo systemctl enable filebeat
 sudo systemctl start filebeat
 sudo systemctl status filebeat
 ```
-## Adding Linux based Detections
-#### Playbook
+## Adding Linux based Detections to Security Onion
+### Playbook
 To import Linux based sigma rules from SigmaHQ to Playbook, modify the soctopus pillar in the global.sls file.
 ```
 sudo vim /opt/so/saltstack/local/pillar/global.sls
@@ -67,5 +70,3 @@ soctopus:
 sudo so-soctopus-restart
 sudo so-playbook-ruleupdate
 ```
-
-
