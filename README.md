@@ -1,5 +1,5 @@
 # Security Onion Dashboard
-![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard1.png)
+![Screenshot](Dashboard1.png)
 ![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard2.png)
 ![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard3.png)
 ![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard4.png)
