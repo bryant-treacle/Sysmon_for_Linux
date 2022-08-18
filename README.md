@@ -1,3 +1,9 @@
+# Security Onion Dashboard
+![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard1.png)
+![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard2.png)
+![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard3.png)
+![alt text](https://github.com/bryant-treacle/Sysmon_for_linux/tree/main/images/Dashboard4.png)
+
 # Manager Node Configurations ver 2.3.150 and earlier
 ## Add the below Elastic Ingest Parsers for Linux Sysmon to the Manager Node
 ```
