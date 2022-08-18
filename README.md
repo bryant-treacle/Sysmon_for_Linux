@@ -71,6 +71,7 @@ sudo so-soctopus-restart
 sudo so-playbook-ruleupdate
 ```
 # Security Onion Dashboards
+![Screenshot](/images/Dashboard.png)
 ![Screenshot](/images/Dashboard2.png)
 ![Screenshot](/images/Dashboard3.png)
 ![Screenshot](/images/Dashboard4.png)
