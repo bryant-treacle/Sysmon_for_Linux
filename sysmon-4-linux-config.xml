@@ -1,0 +1,57 @@
+<Sysmon schemaversion="4.70">
+  <EventFiltering>
+    <!-- Event ID 1 == ProcessCreate. Log all newly created processes -->
+    <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="exclude">
+        <Image condition="end with">udevadm</Image>
+	    <Image condition="end with">sed</Image>
+	    <Image condition="end with">apt-config</Image>
+	    <Image condition="end with">cat</Image>
+	    <Image condition="end with">apt-get</Image>
+	    <Image condition="end with">grub-probe</Image>
+	    <Image condition="end with">cut</Image>
+      </ProcessCreate>
+    </RuleGroup>
+    <!-- Event ID 3 == NetworkConnect Detected. Log all network connections -->
+    <RuleGroup name="" groupRelation="or">
+      <NetworkConnect onmatch="include">
+        <Rule name="TechniqueID=T1105,TechniqueName=Ingress Tool Transfer" groupRelation="or">
+          <Image condition="end with">wget</Image>
+          <Image condition="end with">curl</Image>
+          <Image condition="end with">ftpget</Image>
+          <Image condition="end with">tftp</Image>
+          <Image condition="end with">lwp-download</Image>
+	      <Image condition="end with">nc</Image>
+	      <Image condition="end with">scp</Image>
+	      <Image condition="end with">ssh</Image>
+	      <Image condition="end with">gdb</Image>
+          <Image condition="end with">perl</Image>
+        </Rule>
+      </NetworkConnect>		    
+    </RuleGroup>
+    <!-- Event ID 5 == ProcessTerminate. Log all processes terminated -->
+    <RuleGroup name="" groupRelation="or">
+      <ProcessTerminate onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 9 == RawAccessRead. Log all raw access read -->
+    <RuleGroup name="" groupRelation="or">
+      <RawAccessRead onmatch="include"/>
+    </RuleGroup>
+    <!-- Event ID 10 == ProcessAccess. Log all open process operations -->
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="exclude"/>
+    </RuleGroup>
+    <!-- Event ID 11 == FileCreate. Log every file creation -->
+    <RuleGroup name="" groupRelation="or">
+      <FileCreate onmatch="exclude">
+        <TargetFilename condition="begin with">/proc</TargetFilename>
+		<TargetFilename condition="begin with">/run</TargetFilename>
+		<Image condition="end with">apt-get</Image>
+      </FileCreate>
+    </RuleGroup>
+    <!--Event ID 23 == FileDelete. Log all files being deleted -->
+    <RuleGroup name="" groupRelation="or">
+      <FileDelete onmatch="include"/>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
