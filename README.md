@@ -1,8 +1,3 @@
-# Security Onion Dashboard
-![Screenshot](/images/Dashboard1.png)
-![Screenshot](/images/Dashboard3.png)
-![Screenshot](/images/Dashboard4.png)
-
 # Manager Node Configurations ver 2.3.150 and earlier
 ## Add the below Elastic Ingest Parsers for Linux Sysmon to the Manager Node
 ```
@@ -75,3 +70,7 @@ soctopus:
 sudo so-soctopus-restart
 sudo so-playbook-ruleupdate
 ```
+# Security Onion Dashboard
+![Screenshot](/images/Dashboard1.png)
+![Screenshot](/images/Dashboard3.png)
+![Screenshot](/images/Dashboard4.png)
