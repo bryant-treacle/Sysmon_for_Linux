@@ -34,8 +34,9 @@ Run the `so-allow` command to allow beats endpoints to connect.
 ```
 sudo dpkg -i filebeat-oss-*
 cp filebeat.yml /etc/filebeat/
-
-### Make the following modifications to the filebeat.yml config:
+```
+### Make the following modifications to the filebeat.yml config
+```
   filebeat.inputs:
     paths:
      - /var/log/syslog*
@@ -45,11 +46,26 @@ cp filebeat.yml /etc/filebeat/
     - decpde_xml_wineventlog:
         field: message
         target_field: winlog
+```
 ### Start Filebeat
+```
 sudo systemctl enable filebeat
 sudo systemctl start filebeat
 sudo systemctl status filebeat
 ```
 ## Adding Linux based Detections
+#### Playbook
+To import Linux based sigma rules from SigmaHQ to Playbook, modify the soctopus pillar in the global.sls file.
+```
+sudo vim /opt/so/saltstack/local/pillar/global.sls
+soctopus:
+  playbook:
+    rulesets:
+      - windows
+      - linux
+
+sudo so-soctopus-restart
+sudo so-playbook-ruleupdate
+```
 
 
