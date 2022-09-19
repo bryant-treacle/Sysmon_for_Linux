@@ -1,4 +1,4 @@
-# Manager Node Configurations ver 2.3.140 and earlier
+# Manager Node Configurations ver 2.3.160 and earlier
 ## Add the below Elastic Ingest Parsers for Linux Sysmon to the Manager Node
 ```
 git clone https://github.com/bryant-treacle/Sysmon_for_linux
