@@ -1,0 +1,27 @@
+title: Persistance using systemd
+status: experimental
+description: Detects when systemctl is used to enable reload the systemd service or enable a service to start on boot. To maintain persistence, adversaries can create a target service unit which executes the malicious payload. They can then enable that service using the systemctl enable <service> command-line argument.  
+author: Bryant Treacle
+references: 
+  - https://www.golinuxcloud.com/run-script-at-startup-boot-without-cron-linux/
+  - https://attack.mitre.org/techniques/T1037
+date: 2022/09/15
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection:
+    Image|endswith: /systemctl
+  selection2:
+    CommandLine|contains:
+      - 'enable'
+      - 'daemon-reload'
+  filter:
+    ParentImage|endswith:
+      - '/update-notifier'
+  condition: selection and selection2 and not filter
+falsepositives:
+  - Scripts created by developers and admins
+  - Installation of a new program or application
+  - Administrative activity
+level: low
