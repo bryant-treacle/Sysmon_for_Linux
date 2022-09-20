@@ -70,6 +70,13 @@ soctopus:
 sudo so-soctopus-restart
 sudo so-playbook-ruleupdate
 ```
+### Strelka (Yara) Signatures
+Sliver implant Yara signatures are located within the Yara folder. If you would like Zeek extract ELF files and pass them to Strelka, you will need to add the following to the /opt/so/saltstack/default/salt/zeek/fileextraction_defaults.yaml file:
+```
+- application/x-executable: elf
+```
+To add local YARA rules, create a directory in /opt/so/saltstack/local/salt/strelka/rules, for example localrules. Inside of /opt/so/saltstack/local/salt/strelka/rules/localrules, add your YARA rules.
+
 # Security Onion Dashboards
 ![Screenshot](/images/Dashboard.png)
 ![Screenshot](/images/Dashboard2.png)
