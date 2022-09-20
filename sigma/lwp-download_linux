@@ -1,0 +1,25 @@
+title: lwp-download Usage on Linux
+status: experimental
+description: Detects the use of lpw-dowload on linux, which indicates a file download
+  from a remote location.The lwp-download program is implemented using the libwww-perl library.
+author: Bryant Treacle
+references:
+- https://linux.die.net/man/1/lwp-download
+date: 2022/09/15
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection:
+    Image|endswith: /perl
+  selection2:
+    CommandLine|contains:
+      '/usr/bin/lwp-download'
+  condition: selection and selection2
+falsepositives:
+- Scripts created by developers and admins
+- Administrative activity
+level: low
+tags:
+- attack.command_and_control
+- attack.t1105
