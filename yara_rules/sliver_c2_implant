@@ -1,0 +1,13 @@
+rule sliver_c2_implant
+{
+    meta:
+        author = "Bryant Treacle"
+        description =  "Detects Sliver Windows and Linux implants based on paths and function names within the binary"
+
+    strings:
+        $str1 = "/sliver/"
+        $str2 = "sliverpb"
+
+    condition:
+         any of them
+}
