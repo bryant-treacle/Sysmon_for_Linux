@@ -1,0 +1,24 @@
+title: GNU Debugger File Download using Python urllib
+status: experimental
+description: Detects the use of gdb on linux to file download a file from a remote location. GDB embeds the Python interpreter so it can use Python as an extension language and import python modules such as urllib. 
+author: Bryant Treacle
+references: 
+  - https://linux.die.net/man/1/gdb
+date: 2022/09/15
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection:
+    Image|endswith: /gdb
+  selection2:
+    CommandLine|contains:
+      - 'urlretrieve'
+  condition: selection and selection2
+falsepositives:
+  - Scripts created by developers and admins
+  - Administrative activity
+level: medium
+tags:
+  - attack.command_and_control
+  - attack.t1105
