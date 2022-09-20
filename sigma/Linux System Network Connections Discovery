@@ -1,0 +1,26 @@
+title: Linux System Network Connections Discovery
+status: test
+description: Detects usage of system utilities to discover system network connections
+author: Bryant Treacle
+references:
+- https://github.com/redcanaryco/atomic-red-team/blob/f339e7da7d05f6057fdfcdd3742bfcf365fee2a9/atomics/T1049/T1049.md
+date: 2022/09/20
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection:
+    Image|endswith:
+    - /who
+    - /w
+    - /last
+    - /lsof
+    - /netstat
+    - /ss
+  condition: selection
+falsepositives:
+- Legitimate activities
+level: low
+tags:
+- attack.discovery
+- attack.t1049
