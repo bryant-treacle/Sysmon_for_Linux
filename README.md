@@ -70,6 +70,9 @@ soctopus:
 sudo so-soctopus-restart
 sudo so-playbook-ruleupdate
 ```
+
+Additional Sigma rules can be found in the Sigma folder.
+
 ### Strelka (Yara) Signatures
 Sliver implant Yara signatures are located within the Yara folder. If you would like Zeek extract ELF files and pass them to Strelka, you will need to add the following to the /opt/so/saltstack/default/salt/zeek/fileextraction_defaults.yaml file:
 ```
